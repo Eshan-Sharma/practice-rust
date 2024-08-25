@@ -138,6 +138,11 @@ fn main() {
     let _first_mut_reference = &mut mut_string;
     let _second_mut_reference = &mut_string;
     //println!("{}", _first_mut_reference); //Does not work
+
+    //Clone
+    let original_str = String::from("Hwllloo");
+    let copy_string = original_str.clone();
+    println!("{},{}", original_str, copy_string);
 }
 fn print_string(s: &String) {
     println!("{}", s);
