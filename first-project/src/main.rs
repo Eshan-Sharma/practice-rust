@@ -170,8 +170,8 @@ fn main() {
     print!("Book creation {:?}", my_book);
 
     //Tuple
-    let tuple_book = Tuple_Book("Somebook".to_string(), "helen".to_string(), 1233);
-    println!("{:?}", tuple_book);
+    let tuple_book = TupleBook("Some book".to_string(), "helen".to_string(), 1233);
+    println!("{:?},{:?},{:?}", tuple_book.0, tuple_book.1, tuple_book.2);
 
     //Struct Methods
     let my_rectangle = Rectangle {
@@ -182,7 +182,7 @@ fn main() {
     println!("Area is {}", area);
 }
 #[derive(Debug)]
-struct Tuple_Book(String, String, u32);
+struct TupleBook(String, String, u32);
 #[derive(Debug)]
 struct Book {
     title: String,
