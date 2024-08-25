@@ -116,8 +116,35 @@ fn main() {
         _ => "Number is something else",
     };
     println!("Result is '{}'", result);
-}
 
+    //Ownership
+    let _s1 = String::from("Practice ownership");
+    let _s2 = _s1;
+    //println!("{}", _s1.len()); //This won't work, s1 is moved to s2. Ownership has been transferred
+
+    //References
+    let my_string = String::from("Hello world");
+    let my_ref = &my_string;
+    println!("{}", my_ref);
+    print_string(&my_string);
+    println!("I still got my string {}", my_string);
+
+    //Mutable Reference
+    let mut mut_string = String::from("Hello");
+    change_string(&mut mut_string);
+    println!("{}", mut_string);
+
+    //We cannot have mutable immutable reference together if we are going to use immutable reference from now on
+    let _first_mut_reference = &mut mut_string;
+    let _second_mut_reference = &mut_string;
+    //println!("{}", _first_mut_reference); //Does not work
+}
+fn print_string(s: &String) {
+    println!("{}", s);
+}
+fn change_string(s: &mut String) {
+    s.push_str(" World");
+}
 fn add(x: i32, y: i32) -> i32 {
     x + y
 }
