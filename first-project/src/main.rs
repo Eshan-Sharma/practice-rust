@@ -143,6 +143,57 @@ fn main() {
     let original_str = String::from("Hwllloo");
     let copy_string = original_str.clone();
     println!("{},{}", original_str, copy_string);
+
+    //Struct
+
+    let book = Book {
+        title: String::from("The way of life"),
+        author: String::from("Helen"),
+        publication_year: 1987,
+    };
+    println!(
+        "Book {}, written by {}, in the year {}",
+        book.title, book.author, book.publication_year
+    );
+    let mut book2 = Book {
+        title: String::from("The way of life"),
+        author: String::from("Helen"),
+        publication_year: 1987,
+    };
+    book2.publication_year = 2000;
+    println!(
+        "Book {}, written by {}, in the year {}",
+        book2.title, book2.author, book2.publication_year
+    );
+    println!("Book data {:?}", get_book_data(book));
+    let my_book = create_book("me".to_string(), "myself".to_string(), 1321);
+    print!("Book creation {:?}", my_book);
+
+    //Tuple
+    let tuple_book = Tuple_Book("Somebook".to_string(), "helen".to_string(), 1233);
+    println!("{:?}", tuple_book);
+
+    //Struct Methods
+    let my_rectangle = Rectangle {
+        width: 2.3,
+        length: 2.3,
+    };
+    let area = my_rectangle.area();
+    println!("Area is {}", area);
+}
+#[derive(Debug)]
+struct Tuple_Book(String, String, u32);
+#[derive(Debug)]
+struct Book {
+    title: String,
+    author: String,
+    publication_year: u32,
+}
+fn get_book_data(book: Book) -> [String; 3] {
+    let title = book.title;
+    let author = book.author;
+    let publication_year = book.publication_year;
+    [title, author, publication_year.to_string()]
 }
 fn print_string(s: &String) {
     println!("{}", s);
@@ -152,4 +203,22 @@ fn change_string(s: &mut String) {
 }
 fn add(x: i32, y: i32) -> i32 {
     x + y
+}
+fn create_book(title: String, author: String, publication_year: u32) -> Book {
+    let book = Book {
+        title: title,
+        author: author,
+        publication_year: publication_year,
+    };
+    book
+}
+//Struct methods
+struct Rectangle {
+    length: f64,
+    width: f64,
+}
+impl Rectangle {
+    fn area(&self) -> f64 {
+        self.width * self.length
+    }
 }
