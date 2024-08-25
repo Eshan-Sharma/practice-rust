@@ -57,6 +57,67 @@ fn main() {
 
     //Variables
     let mut num = 5; //Mutability
+    println!("{}", num);
     num = 4;
     println!("{}", num);
+
+    println!("Sum is {}", add(1, 2));
+
+    if _days_of_week[6] == "Sunday" {
+        println!("The race day!");
+    } else if _days_of_week[5] == "Saturday" {
+        println!("The qualifying day");
+    } else {
+        println!("Patiently wait for the race day");
+    }
+
+    //While
+    let mut counter = 0;
+    while counter < 5 {
+        println!("Counter {}", counter);
+        counter += 1;
+    }
+
+    //For loop
+    for number in 1..5 {
+        println!("Number is {}", number);
+    }
+    //For loop
+    for number in 1..=5 {
+        println!("Numbers again is {}", number);
+    }
+    //loop
+    let mut counter = 1;
+    loop {
+        println!("Counter value is {}", counter);
+        counter += 1;
+        if counter == 6 {
+            println!("Breaks");
+            break;
+        }
+    }
+    //Match
+    let new_num = 5;
+    match new_num {
+        1 => println!("Number is one"),
+        2 => println!("Number is two"),
+        3 => println!("Number is three"),
+        4 => println!("Number is four"),
+        5 => println!("Number is five"),
+        _ => println!("Numebr is something else"),
+    }
+    //Match results
+    let result = match new_num {
+        1 => "Number is one",
+        2 => "Number is two",
+        3 => "Number is three",
+        4 => "Number is four",
+        5 => "Number is five",
+        _ => "Number is something else",
+    };
+    println!("Result is '{}'", result);
+}
+
+fn add(x: i32, y: i32) -> i32 {
+    x + y
 }
