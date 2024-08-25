@@ -180,6 +180,21 @@ fn main() {
     };
     let area = my_rectangle.area();
     println!("Area is {}", area);
+
+    //Enum
+    let current_weather = Weather::Sunny;
+    println!("{:?}", current_weather);
+    let msg1 = message::Write(String::from("Hello from enum"));
+    process_message(msg1);
+
+    let msg = message::Write(String::from("Hello from enum"));
+    if let message::Write(_text_s) = msg {
+        println!("Inside if let, {}", _text_s);
+    } else {
+        println!("Outside if let");
+    }
+    let gg = message::Write("Melo is Dilo".to_string());
+    gg.call();
 }
 #[derive(Debug)]
 struct TupleBook(String, String, u32);
@@ -220,5 +235,38 @@ struct Rectangle {
 impl Rectangle {
     fn area(&self) -> f64 {
         self.width * self.length
+    }
+}
+
+//Enum
+#[derive(Debug)]
+enum Weather {
+    Sunny,
+    Cloudy,
+    Rainy,
+    Snowy,
+}
+#[derive(Debug)]
+enum message {
+    Quit,
+    Move { x: i32, y: i32 },
+    Write(String),
+    ChangeColor(i32, i32, i32),
+}
+impl message {
+    fn call(&self) {
+        match self {
+            message::Quit => println!("Quit"),
+
+            _ => println!("Other"),
+        }
+    }
+}
+fn process_message(msg: message) {
+    match msg {
+        message::Quit => println!("Quit now"),
+        message::Move { x, y } => println!("Move to x:{} and y:{}", x, y),
+        message::Write(text) => println!("Text is : {}", text),
+        _ => println!("Something else"),
     }
 }
