@@ -22,6 +22,33 @@ fn main() {
         Ok(value) => println!("Value is {}", value),
         Err(err_msg) => println!("{}", err_msg),
     }
+
+    let mut_numbers = vec![1, 2, 3, 4];
+    let mut names: Vec<String> = Vec::new();
+    names.push(String::from("Alice"));
+    names.push(String::from("Bob"));
+    let name1 = &names[0];
+    let name2 = &names[1];
+    println!("{},{}", name1, name2);
+    for num in &mut_numbers {
+        println!("{}", num);
+    }
+
+    let slice = &mut_numbers[1..2];
+    println!("{:?}", slice);
+
+    //Strings are also a collection
+    let mut my_string = String::from("my");
+    let mut my_second_string = String::from("Second String");
+    my_string.push_str("string");
+    println!("{}", my_string);
+
+    for c in my_string.chars() {
+        println!("{}", c)
+    }
+    for b in my_string.bytes() {
+        println!("{}", b)
+    }
 }
 
 fn find_square_root(number: f64) -> Option<f64> {
