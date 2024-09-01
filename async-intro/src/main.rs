@@ -3,35 +3,40 @@ use tokio::time::sleep;
 
 #[tokio::main]
 async fn main() {
-//     println!("Hello, world!");
-    
-//    let f =  my_function();
-//    println!("Before f");
-//    f.await;
+    //     println!("Hello, world!");
+
+    //    let f =  my_function();
+    //    println!("Before f");
+    //    f.await;
     let mut handles = vec![];
-    for i in 0..2{
-        let handle = tokio::spawn(async move{
+    for i in 0..2 {
+        let handle = tokio::spawn(async move {
             my_function(i).await;
         });
         handles.push(handle);
     }
-    for handle in handles{
+    for handle in handles {
         handle.await.unwrap();
     }
+
+    hello("world").await;
 }
 
-async fn my_function(i:i32){
+async fn my_function(i: i32) {
     println!("I'am an async function");
-    let s1:String = read_from_database().await;//without await it will return a future
-    println!("[{i}]First result: {}",s1);
-    let s2:String = read_from_database().await;
-    println!("[{i}]Second result: {}",s2);
-
+    let s1: String = read_from_database().await; //without await it will return a future
+    println!("[{i}]First result: {}", s1);
+    let s2: String = read_from_database().await;
+    println!("[{i}]Second result: {}", s2);
 }
 
-async fn read_from_database() -> String{
+async fn read_from_database() -> String {
     sleep(Duration::from_millis(50)).await;
     "DB Result".to_owned()
+}
+
+async fn hello(name: &'static str) {
+    println!("hello, {name}!");
 }
 
 // fn my_function_without_syntax_sugar -> impl Future<Output=()>{
